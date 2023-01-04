@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Home from '../Screens/Home';
 import Serie from '../Screens/Serie';
+import Connexion from '../Screens/Connexion';
 
 const Stack = createStackNavigator();
 
@@ -23,4 +24,15 @@ const MainStackNavigator = ({
     </Stack.Navigator>
 );
 
-export {MainStackNavigator};
+const AccountStackNavigator = ({
+    params,
+}) => (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Connexion" component={Connexion} options={{title:"Connexion"}} />
+    </Stack.Navigator>
+);
+
+
+export {MainStackNavigator,AccountStackNavigator};
+
+
