@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FilmItem from '../Components/FilmItem';
+import SerieItem from '../Components/SerieItem';
 import SeriesRequest from '../Services/SeriesRequest';
 
 const Home = ({ navigation }) => {
   const [popular, setPopular] = useState('');
   const [loading, setLoading] = useState(true);
+  const [top, setTop] = useState('');
+  const [onAir, setOnAir] = useState('');
 
   const fetchPopularSeries = async () => {
     let data = await SeriesRequest.getSeries();
     setPopular(data.results);
     setLoading(false);
   };
+  const fetchTopRatedSeries = async () => {
+    let data = await SeriesRequest.getTopRatedSeries();
+    setTop(data.results);
+  };
+  const fetchOnAirSeries = async () => {
+    let data = await SeriesRequest.getOnAirSeries();
+    setOnAir(data.results);
+  };
 
   useEffect(() => {
+    fetchTopRatedSeries().then((r) => '');
+    fetchOnAirSeries().then((r) => '');
     fetchPopularSeries().then((r) => '');
   }, []);
 
@@ -22,15 +34,15 @@ const Home = ({ navigation }) => {
         {!loading ? (<>
           <Text style={styles.sectionTitle}>Series populaires</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {popular.map((e) => <FilmItem film={e}/>)}
+            {popular.map((e) => <SerieItem key={e.id} serie={e}/>)}
           </ScrollView>
           <Text style={styles.sectionTitle}>Les mieux notés</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {popular.map((e) => <FilmItem film={e}/>)}
+            {top.map((e) => <SerieItem key={e.id} serie={e}/>)}
           </ScrollView>
           <Text style={styles.sectionTitle}>En Cours de diffusion</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {popular.map((e) => <FilmItem film={e}/>)}
+            {onAir.map((e) => <SerieItem key={e.id} serie={e}/>)}
           </ScrollView>
           </>
         ) : (
