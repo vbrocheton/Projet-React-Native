@@ -5,7 +5,6 @@ import imagesPath from '../Services/Images';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SerieItem = ({ serie }) => {
-  console.log(serie);
   const navigate = useNavigation();
 
   return (
