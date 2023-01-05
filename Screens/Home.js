@@ -13,7 +13,7 @@ const Home = ({ navigation }) => {
   const fetchPopularSeries = async () => {
     let data = await SeriesRequest.getSeries();
     setPopular(data.results);
-    setLoading(false);
+    setTimeout(()=>setLoading(false), 500 )
   };
   const fetchTopRatedSeries = async () => {
     let data = await SeriesRequest.getTopRatedSeries();

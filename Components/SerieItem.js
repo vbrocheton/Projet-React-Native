@@ -5,7 +5,9 @@ import imagesPath from '../Services/Images';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SerieItem = ({ serie }) => {
+  console.log(serie);
   const navigate = useNavigation();
+
   return (
     <TouchableOpacity style={styles.main_container} onPress={() => navigate.navigate('Serie', {serie:serie.id})}>
       <Image
