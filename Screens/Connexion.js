@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../firebase"
+import { authentication } from "../firebase-auth"
 
-const Connexion = () => {
+const Connexion = ({navigation}) => {
 
     const [email,setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,27 +27,9 @@ const Connexion = () => {
 
     }
 
-
-
-
-    function signUp() {
-    createUserWithEmailAndPassword(authentication, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-
-        alert('Vous êtes bien inscrit')
-
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        // ..
-      });
-
-      }
+    const goSignUp = () => {
+      navigation.navigate('Inscription');
+    }
 
 
     return (
@@ -80,13 +62,10 @@ const Connexion = () => {
                 >
                   <Text style={styles.buttonText}>Connexion</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={signUp}
-                  style={[styles.button, styles.buttonOutline]}
-                >
-                  <Text style={styles.buttonOutlineText}>Inscription</Text>
-                </TouchableOpacity>
          </View>
+         <TouchableOpacity onPress={goSignUp}>
+          <Text>Si vous n'avez pas de compte, veuillez vous inscrire ici !</Text>
+         </TouchableOpacity>
 
     </KeyboardAvoidingView>
 )};

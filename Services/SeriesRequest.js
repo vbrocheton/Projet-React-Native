@@ -25,11 +25,18 @@ function getSimilar(id){
     return axios.get("https://api.themoviedb.org/3/tv/"+id+"/similar?api_key="+API_AUTH+"&language=fr-FR").then(response=>response.data.results)
 }
 
+function getFilmsFromApiWithText(text, page) {
+    return axios( 'https://api.themoviedb.org/3/search/tv?api_key=' + API_AUTH + '&language=fr&query=' + text+'&page='+page )
+      .then((response) => response.data)
+      .catch((error) => console.log(error))
+  }
+
 export default {
     getSeries,
     getSerie,
     getCredits,
     getSimilar,
     getOnAirSeries,
-    getTopRatedSeries
+    getTopRatedSeries,
+    getFilmsFromApiWithText
 }
