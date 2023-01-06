@@ -160,31 +160,31 @@ const Serie = ({ route }) => {
               <View style={styles.buttonList}>
                 {(containsObject(serieToAdd.id, currentUser.vu) && (
                   <TouchableOpacity onPress={deleteFromVu} style={styles.button}>
-                    <Text>Retirer des Vu</Text>
+                    <Text style={{textAlign:'center'}}>Retirer des Vu</Text>
                   </TouchableOpacity>
                 )) || (
                   <TouchableOpacity onPress={addToVu} style={styles.button}>
-                    <Text>Vu</Text>
+                    <Text style={{textAlign:'center'}}>Vu</Text>
                   </TouchableOpacity>
                 )}
 
                 {(containsObject(serieToAdd.id, currentUser['a_voir']) && (
                   <TouchableOpacity onPress={deleteFromVoir} style={styles.button}>
-                    <Text>Retirer des à voir</Text>
+                    <Text style={{textAlign:'center'}}>Retirer des à voir</Text>
                   </TouchableOpacity>
                 )) || (
                   <TouchableOpacity onPress={addToAVoir} style={styles.button}>
-                    <Text>A Voir</Text>
+                    <Text style={{textAlign:'center'}}>A Voir</Text>
                   </TouchableOpacity>
                 )}
 
                 {(containsObject(serieToAdd.id, currentUser.fav) && (
                   <TouchableOpacity onPress={deleteFromFav} style={styles.button}>
-                    <Text>Retirer des Favoris</Text>
+                    <Text style={{textAlign:'center'}}>Retirer des Favoris</Text>
                   </TouchableOpacity>
                 )) || (
                   <TouchableOpacity onPress={addToFav} style={styles.button}>
-                    <Text>Favoris</Text>
+                    <Text style={{textAlign:'center'}}>Favoris</Text>
                   </TouchableOpacity>
                 )}
               </View>
@@ -289,9 +289,8 @@ const styles = StyleSheet.create({
   },
    button: {
       backgroundColor: '#ecc19c',
-      marginBottom: 70,
-      textAlign: 'center',
-      width: 75,
+      marginBottom: 30,
+      width:90,
       height: 40,
       borderWidth: 1,
       borderRadius: 10,
