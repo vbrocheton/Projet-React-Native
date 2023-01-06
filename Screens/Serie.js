@@ -174,7 +174,7 @@ const Serie = ({ route }) => {
                   </TouchableOpacity>
                 )) || (
                   <TouchableOpacity onPress={addToAVoir} style={styles.button}>
-                    <Text style={{textAlign:'center'}}>A Voir</Text>
+                    <Text style={{textAlign:'center'}}>A Voir</Text
                   </TouchableOpacity>
                 )}
 
