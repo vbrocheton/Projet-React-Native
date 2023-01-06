@@ -2,18 +2,29 @@ import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { authentication, db } from "../firebase-auth"
+import { addDoc, collection } from 'firebase/firestore';
 
 const Inscription = () => {
 
     const [email,setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [nom, setNom] = useState('')
+    const [prenom, setPrenom] = useState('')
 
-    function signUp() {
+    const signUp = () => {
     createUserWithEmailAndPassword(authentication, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        db
+        let newUser = {
+          mail:email,
+          nom:nom,
+          prenom:prenom,
+          vu:[],
+          a_voir:[],
+          fav:[]
+        }
+        let docRef = await addDoc(collection(db, "User"), newUser);
 
         alert('Vous êtes bien inscrit')
 
@@ -35,6 +46,18 @@ const Inscription = () => {
         behavior="padding"
     >
         <View style={styles.inputContainer}>
+        <TextInput
+               placeholder="Nom"
+               value={nom}
+               onChangeText={(Text) => {setNom(Text)}}
+               style={styles.input}
+            />
+            <TextInput
+               placeholder="Prénom"
+               value={prenom}
+               onChangeText={(Text) => {setPrenom(Text)}}
+               style={styles.input}
+            />
             <TextInput
                placeholder="Email"
                value={email}

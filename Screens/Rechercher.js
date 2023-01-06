@@ -65,7 +65,6 @@ export const Rechercher = () => {
       {!loading && (
         <FlatList
           numColumns={3}
-          columnWrapperStyle="row"
           data={series}
           keyExtractor={(item) => item.id}
           renderItem={(item) => <SerieItem serie={item.item} />}
