@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../firebase-auth"
+import { authentication, db } from "../firebase-auth"
 
 const Inscription = () => {
 
@@ -13,7 +13,7 @@ const Inscription = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        database.
+        db
 
         alert('Vous êtes bien inscrit')
 
