@@ -15,7 +15,15 @@ import SerieItem from '../Components/SerieItem';
 import { useAuthentication } from '../Services/useAuth';
 import { authentication } from '../firebase-auth';
 import { db } from '../firebase-auth';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+} from 'firebase/firestore';
 
 const Serie = ({ route }) => {
   const id = route.params.serie;
@@ -44,7 +52,7 @@ const Serie = ({ route }) => {
       vote_average: data.vote_average,
     };
     setSerieToAdd(toAdd);
-    setTimeout(() => setLoading(false), 500);
+    setTimeout(() => setLoading(false), 1000);
   };
 
   const fetchActeurs = async () => {
@@ -71,25 +79,71 @@ const Serie = ({ route }) => {
   };
 
   useEffect(() => {
-    console.log(user);
     if (user) {
       fetchUser().then((r) => '');
     }
     fetchActeurs().then((r) => '');
     fetchSimilar().then((r) => '');
     fetchSerie().then((r) => '');
-  }, []);
+  }, [user]);
 
   const addToVu = () => {
-    console.log(authentication.currentUser.email);
+    let toVu = [...currentUser.vu];
+    toVu.push(serieToAdd);
+    let vuRef = doc(db, 'User', currentUser.id);
+    setDoc(vuRef, { vu: toVu }, { merge: true });
+    setCurrentUser({...currentUser, vu : toVu});
   };
 
   const addToAVoir = () => {
-    console.log(serieToAdd);
+    let toAVoir = [...currentUser['a_voir']];
+    toAVoir.push(serieToAdd);
+    let Avoir = doc(db, 'User', currentUser.id);
+    setDoc(Avoir, { a_voir: toAVoir }, { merge: true });
+    setCurrentUser({...currentUser, a_voir : toAVoir});
   };
 
   const addToFav = () => {
-    console.log(serieToAdd);
+    let toFav = [...currentUser.fav];
+    toFav.push(serieToAdd);
+    let favRef = doc(db, 'User', currentUser.id);
+    setDoc(favRef, { fav: toFav }, { merge: true });
+    setCurrentUser({...currentUser, fav : toFav});
+  };
+
+  const deleteFromFav = () => {
+    let toFav = [...currentUser.fav];
+    let newFav = [...toFav].filter((item) => item.id != serieToAdd.id);
+    let Doc = doc(db, 'User', currentUser.id);
+    setDoc(Doc, { fav: newFav }, { merge: true });
+    setCurrentUser({...currentUser, fav : newFav});
+  };
+
+  const deleteFromVoir = () => {
+    let toAVoir = [...currentUser.a_voir];
+    let newToAVoir = [...toAVoir].filter((item) => item.id !== serieToAdd.id);
+    let Doc = doc(db, 'User', currentUser.id);
+    setDoc(Doc, { a_voir: newToAVoir }, { merge: true });
+    setCurrentUser({...currentUser, a_voir : newToAVoir});
+  };
+
+  const deleteFromVu = () => {
+    let toVu = [...currentUser.vu];
+    let newToVu = [...toVu].filter((item) => item.id !== serieToAdd.id);
+    let Doc = doc(db, 'User', currentUser.id);
+    setDoc(Doc, { vu: newToVu }, { merge: true });
+    setCurrentUser({...currentUser, vu : newToVu});
+  };
+
+  const containsObject = (obj, list) => {
+    for (let index = 0; index < list.length; index++) {
+      const l = list[index];
+      if (l.id == obj) {
+        return true;
+      }
+    }
+
+    return false;
   };
 
   return (
@@ -104,15 +158,35 @@ const Serie = ({ route }) => {
             />
             {user && (
               <View style={styles.buttonList}>
-                <TouchableOpacity onPress={addToVu}>
-                  <Text>Vu</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={addToAVoir}>
-                  <Text>A voir</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={addToFav}>
-                  <Text>Favoris</Text>
-                </TouchableOpacity>
+                {(containsObject(serieToAdd.id, currentUser.vu) && (
+                  <TouchableOpacity onPress={deleteFromVu}>
+                    <Text>Retirer des Vu</Text>
+                  </TouchableOpacity>
+                )) || (
+                  <TouchableOpacity onPress={addToVu}>
+                    <Text>Vu</Text>
+                  </TouchableOpacity>
+                )}
+
+                {(containsObject(serieToAdd.id, currentUser['a_voir']) && (
+                  <TouchableOpacity onPress={deleteFromVoir}>
+                    <Text>Retirer des à voir</Text>
+                  </TouchableOpacity>
+                )) || (
+                  <TouchableOpacity onPress={addToAVoir}>
+                    <Text>A Voir</Text>
+                  </TouchableOpacity>
+                )}
+
+                {(containsObject(serieToAdd.id, currentUser.fav) && (
+                  <TouchableOpacity onPress={deleteFromFav}>
+                    <Text>Retirer des Favoris</Text>
+                  </TouchableOpacity>
+                )) || (
+                  <TouchableOpacity onPress={addToFav}>
+                    <Text>Favoris</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             )}
             <Text>
@@ -121,25 +195,35 @@ const Serie = ({ route }) => {
             </Text>
             <Text>
               Genre :{' '}
-              {serie.genres.map(({ name }, index) => (
-                <>
-                  {name}
-                  {index === serie.genres.length - 1 ? '' : ','}{' '}
-                </>
-              ))}
+              {serie.genres.map(({ name }, index) => {
+                {
+                  name;
+                }
+                {
+                  index === serie.genres.length - 1 ? '' : ',';
+                }
+                {
+                  (' ');
+                }
+              })}
             </Text>
             <Text>
               Crée par :{' '}
-              {serie.created_by.map(({ name }, index) => (
-                <>
-                  {name}
-                  {index === serie.created_by.length - 1
+              {serie.created_by.map(({ name }, index) => {
+                {
+                  name;
+                }
+                {
+                  index === serie.created_by.length - 1
                     ? ''
                     : index === serie.created_by.length - 2
                     ? ' &'
-                    : ','}{' '}
-                </>
-              ))}
+                    : ',';
+                }
+                {
+                  (' ');
+                }
+              })}
             </Text>
             <Text>{serie.in_production ? 'En Production' : 'Terminée'}</Text>
             <Text>Nombre de saisons : {serie.number_of_seasons}</Text>
