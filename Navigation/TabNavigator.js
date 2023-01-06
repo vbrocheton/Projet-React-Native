@@ -15,15 +15,15 @@ const TabNavigator = ({
     }}>
       <Tab.Screen name="Main" component={MainStackNavigator} options={{
         tabBarLabel:"Accueil",
-        tabBarIcon: () => <MaterialCommunityIcons name="home" size={20}/>
+        tabBarIcon: () => <MaterialCommunityIcons name="home" size={35}/>
       }}/>
       <Tab.Screen name="Rechercher" component={Rechercher} options={{
         tabBarLabel:"Rechercher",
-        tabBarIcon: () => <MaterialCommunityIcons name="magnify" size={20}/>
+        tabBarIcon: () => <MaterialCommunityIcons name="magnify" size={35}/>
       }}/>
       <Tab.Screen name="Compte" component={AccountStackNavigator} options={{
         tabBarLabel:"Compte",
-        tabBarIcon: () => <MaterialCommunityIcons name="account" size={20}/>
+        tabBarIcon: () => <MaterialCommunityIcons name="account" size={35}/>
       }}/>
     </Tab.Navigator>
 );

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
   },
   under_text: {
-    backgroundColor: 'grey',
+    backgroundColor: '#C3A6A0',
     marginLeft: 5,
     borderWidth: 1,
     borderBottomLeftRadius: 10,

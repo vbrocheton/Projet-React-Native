@@ -15,11 +15,21 @@ const Stack = createStackNavigator();
 
 const screenOptionStyle = {
   headerStyle: {
-    backgroundColor: '#9AC4F8',
+    backgroundColor: '#262220',
+      },
+  cardStyle: {
+  backgroundColor: '#F7F1F0'
   },
   headerTintColor: 'white',
   headerBackTitle: 'Retour',
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+  fontWeight: 'bold',
+  fontSize: 25
+  }
 };
+
+
 
 const MainStackNavigator = ({ params }) => (
   <Stack.Navigator screenOptions={screenOptionStyle}>

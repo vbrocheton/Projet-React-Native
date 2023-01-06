@@ -53,10 +53,11 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   sectionTitle:{
-    fontSize:30,
+    color: '#A15C38',
+    fontSize:20,
     fontFamily:"Helvetica",
     marginLeft:4,
-    marginTop: 10
+    marginTop: 16
   }
 })
 
