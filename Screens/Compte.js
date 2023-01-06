@@ -25,7 +25,7 @@ const Compte = ({navigation}) => {
     <View style={styles.buttonContainer2}>
                     <TouchableOpacity
                     onPress={() => navigation.navigate("AVoir")}
-                      style={styles.button}
+                      style={styles.button2}
                     >
                       <Text style={styles.buttonText}>À voir</Text>
                     </TouchableOpacity>
@@ -35,7 +35,7 @@ const Compte = ({navigation}) => {
     <View style={styles.buttonContainer2}>
                     <TouchableOpacity
                     onPress={() => navigation.navigate("Vu")}
-                    style={styles.button}
+                    style={styles.button2}
                     >
                       <Text style={styles.buttonText}>Vu</Text>
                     </TouchableOpacity>
@@ -46,7 +46,7 @@ const Compte = ({navigation}) => {
 <View style={styles.buttonContainer2}>
                 <TouchableOpacity
                 onPress={() => navigation.navigate("Favoris")}
-                style={styles.button}
+                style={styles.button2}
                 >
                   <Text style={styles.buttonText}>Favoris</Text>
                 </TouchableOpacity>
@@ -100,12 +100,20 @@ const styles = StyleSheet.create({
     },
 
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#ecc19c',
     width: '100%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
   },
+   button2: {
+      backgroundColor: '#ecc19c',
+      width: '100%',
+      padding: 15,
+      borderRadius: 10,
+      alignItems: 'center',
+    },
+
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,

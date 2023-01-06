@@ -14,8 +14,8 @@ const SerieItem = ({ serie }) => {
         source={{ uri: imagesPath(serie.poster_path) }}
       />
       <View style={styles.under_text}>
-        <Text numberOfLines={2}>{serie.name}</Text>
-        <Text style={styles.note}>{serie.vote_average}<MaterialCommunityIcons name="star" /></Text>
+        <Text style={styles.serie} numberOfLines={2}>{serie.name}</Text>
+        <Text style={styles.note}>{serie.vote_average} / 10 <MaterialCommunityIcons name="star" /></Text>
       </View>
     </TouchableOpacity>
   );
@@ -23,7 +23,7 @@ const SerieItem = ({ serie }) => {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 240,
+    height: 250,
     flexDirection: 'column',
   },
   image: {
@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection:"column",
     justifyContent:"space-between",
-    backgroundColor: 'grey',
+    textAlign:"center",
+    fontSize:16,
+    backgroundColor: '#ecc19c',
     marginLeft: 5,
-    borderWidth: 1,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     width:120,
@@ -48,8 +49,15 @@ const styles = StyleSheet.create({
   note:{
     fontSize:12,
     marginTop:5,
-    textAlign:"right"
-  }
+    textAlign:"center",
+          fontWeight: 'bold',
+  },
+
+  serie:{
+      fontSize:15,
+      marginTop:5,
+      textAlign:"center"
+    }
 });
 
 export default SerieItem;
