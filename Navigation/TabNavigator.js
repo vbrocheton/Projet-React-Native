@@ -11,8 +11,17 @@ const TabNavigator = ({
     params,
 }) => (
     <Tab.Navigator screenOptions={{
-        headerShown:false
-    }}>
+
+        headerShown:false,
+
+        tabBarStyle: { backgroundColor: 'WHITE'}
+
+    }}
+
+    >
+
+
+
       <Tab.Screen name="Main" component={MainStackNavigator} options={{
         tabBarLabel:"Accueil",
         tabBarIcon: () => <MaterialCommunityIcons name="home" size={35}/>

@@ -159,31 +159,31 @@ const Serie = ({ route }) => {
             {user && (
               <View style={styles.buttonList}>
                 {(containsObject(serieToAdd.id, currentUser.vu) && (
-                  <TouchableOpacity onPress={deleteFromVu}>
+                  <TouchableOpacity onPress={deleteFromVu} style={styles.button}>
                     <Text>Retirer des Vu</Text>
                   </TouchableOpacity>
                 )) || (
-                  <TouchableOpacity onPress={addToVu}>
+                  <TouchableOpacity onPress={addToVu} style={styles.button}>
                     <Text>Vu</Text>
                   </TouchableOpacity>
                 )}
 
                 {(containsObject(serieToAdd.id, currentUser['a_voir']) && (
-                  <TouchableOpacity onPress={deleteFromVoir}>
+                  <TouchableOpacity onPress={deleteFromVoir} style={styles.button}>
                     <Text>Retirer des à voir</Text>
                   </TouchableOpacity>
                 )) || (
-                  <TouchableOpacity onPress={addToAVoir}>
+                  <TouchableOpacity onPress={addToAVoir} style={styles.button}>
                     <Text>A Voir</Text>
                   </TouchableOpacity>
                 )}
 
                 {(containsObject(serieToAdd.id, currentUser.fav) && (
-                  <TouchableOpacity onPress={deleteFromFav}>
+                  <TouchableOpacity onPress={deleteFromFav} style={styles.button}>
                     <Text>Retirer des Favoris</Text>
                   </TouchableOpacity>
                 )) || (
-                  <TouchableOpacity onPress={addToFav}>
+                  <TouchableOpacity onPress={addToFav} style={styles.button}>
                     <Text>Favoris</Text>
                   </TouchableOpacity>
                 )}
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 280,
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 25,
     backgroundColor: 'gray',
     alignSelf: 'center',
   },
@@ -287,6 +287,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
+   button: {
+      backgroundColor: '#ecc19c',
+      marginBottom: 70,
+      textAlign: 'center',
+      width: 75,
+      height: 40,
+      borderWidth: 1,
+      borderRadius: 10,
+      justifyContent: 'space-evenly',
+    },
 });
 
 export default Serie;
