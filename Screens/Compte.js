@@ -22,6 +22,38 @@ const Compte = ({navigation}) => {
         behavior="padding"
     >
 
+    <View style={styles.buttonContainer2}>
+                    <TouchableOpacity
+                    onPress={() => navigation.navigate("AVoir")}
+                      style={styles.button}
+                    >
+                      <Text style={styles.buttonText}>À voir</Text>
+                    </TouchableOpacity>
+             </View>
+
+
+    <View style={styles.buttonContainer2}>
+                    <TouchableOpacity
+                    onPress={() => navigation.navigate("Vu")}
+                    style={styles.button}
+                    >
+                      <Text style={styles.buttonText}>Vu</Text>
+                    </TouchableOpacity>
+             </View>
+
+
+
+<View style={styles.buttonContainer2}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate("Favoris")}
+                style={styles.button}
+                >
+                  <Text style={styles.buttonText}>Favoris</Text>
+                </TouchableOpacity>
+         </View>
+
+
+
 
          <View style={styles.buttonContainer}>
                 <TouchableOpacity
@@ -58,8 +90,15 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 50,
   },
+  buttonContainer2: {
+      width: '35%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 15,
+    },
+
   button: {
     backgroundColor: '#0782F9',
     width: '100%',
